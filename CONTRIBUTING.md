@@ -1,6 +1,6 @@
 # Contributing to F.I.D.E
 
-vue-annotator is a community-driven project. As such, we welcome and encourage all sorts of
+vue-authoring-template is a community-driven project. As such, we welcome and encourage all sorts of
 contributions. They include, but are not limited to:
 
 - Constructive feedback

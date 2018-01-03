@@ -22,7 +22,7 @@ withDocs.addFooter(Footer)
 
 // addDecorator(centered) // BUG: Cannot add property components, object is not extensible (Vue Component not supported)
 masterOptions({
-  name: 'Vue-Annotator',
+  name: 'vue-authoring-template',
   url: '#',
   showLeftPanel: true,
   downPanelInRight: true,
