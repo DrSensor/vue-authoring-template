@@ -1,0 +1,13 @@
+{
+  "name": "vue-authoring-template",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "A template for authoring component with it's use case.",
+  "scripts": {
+    "docs": "cd docs && gitbook serve",
+    "docs:deploy": "bash ./deploy-docs.sh"
+  },
+  "devDependencies": {
+    "vue-cli": "^2.8.1"
+  }
+}
