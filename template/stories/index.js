@@ -47,11 +47,7 @@ require.context('.', true, /\.vue$/).keys()
       const Component = require(`${filename}`).default
 
       const story = () => {
-        /** WIP: @since https://github.com/storybooks/storybook/issues/2560 so wait to resolve
-        @code
-        // insert your knob here
-        @endcode
-        */
+        /** INSERT THE KNOB HERE */
 
         return {
           render () {
@@ -63,10 +59,12 @@ require.context('.', true, /\.vue$/).keys()
         }
       }
 
+      /** CHAIN THE CUSTOM BLOCK WITH THE storybook-addon HERE */
       // console.log(Component.__notes, Component.__docs, Component.__info)
       const storyWithNotes = withNotes(Component.__notes || '')(story)
       // const storyWithInfo = withInfo(Component.__info || '')(story) // BUG: not support Vue Component
       // const storyWithDocs = withDocs(Component.__docs || '', storyWithNotes) // WIP: https://github.com/tuchk4/storybook-readme/issues/37
+
       Stories.add(componentName, storyWithNotes)
     }
   })
