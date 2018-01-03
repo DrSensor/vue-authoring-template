@@ -19,6 +19,18 @@ As the time passed, he/she is to lazy to do that because no template/config/cli/
 ```bash
 vue init DrSensor/vue-authoring-template
 ```
+to build component use
+```
+yarn build
+```
+to build the storybook use
+```
+yarn storybook:build
+```
+to start it in development mode (only development mode is supported) use
+```
+yarn storybook
+```
 
 ## Project Structure
 ```markdown
