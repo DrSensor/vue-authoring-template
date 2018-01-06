@@ -60,7 +60,34 @@ module.exports = {
           short: 'no'
         }
       ]
+    },
+    addons: {
+      type: 'checkbox',
+      message:
+        'Select which addon you want to add',
+      choices: [
+        'knobs',
+        'notes',
+        'info',
+        'readme',
+        'console'
+      ],
+      default: [
+        'knobs',
+        'readme',
+        'console'
+      ]
+    },
+    customBlocks: {
+      type: 'confirm',
+      message: 'Enable custom-blocks?'
     }
+  },
+  filters: {
+    '.loader/*': 'customBlocks',
+    '.loader/docs-loader': 'addons.readme',
+    '.loader/info-loader': 'addons.info',
+    '.loader/notes-loader': 'addons.notes'
   },
   complete: function (data, { chalk }) {
     const green = chalk.green
@@ -68,6 +95,8 @@ module.exports = {
     sortDependencies(data, green)
 
     const cwd = path.join(process.cwd(), data.inPlace ? '' : data.destDirName)
+
+    console.log(data)
 
     if (data.autoInstall) {
       installDependencies(cwd, data.autoInstall, green)

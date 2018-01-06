@@ -33,7 +33,7 @@ exports.installDependencies = function installDependencies (
   console.log(`\n\n# ${color('Installing project dependencies ...')}`)
   console.log('# ========================\n')
   return runCommand(executable, ['install'], {
-    cwd,
+    cwd
   })
 }
 
@@ -55,7 +55,7 @@ exports.runLintFix = function runLintFix (cwd, data, color) {
         ? ['run', 'lint', '--', '--fix']
         : ['run', 'lint', '--fix']
     return runCommand(data.autoInstall, args, {
-      cwd,
+      cwd
     })
   }
   return Promise.resolve()
@@ -122,7 +122,7 @@ function runCommand (cmd, args, options) {
         {
           cwd: process.cwd(),
           stdio: 'inherit',
-          shell: true,
+          shell: true
         },
         options
       )

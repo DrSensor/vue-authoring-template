@@ -6,24 +6,30 @@ Currently this project main goal is to help authoring Vue component with it's us
 
 > Warning: not yet manually tested
 
-## Montivation
-😎 There is a time when developer involved in a project then build component to solve specific problem.
-
-😏 One day this developer happen to do the same thing again in different project with slight alteration.
-
-😫 Then doing it again, and again, and again.
-
-😂 Now this developer have build many component with the same topic.
-
-😲 So, why not publish it as a single component with that one topic in mind to npm?
-
-😖 However, the component must be showcased in [mvce](https://stackoverflow.com/help/mcve) style to make it easy to understand and maintainable.
-
-:poop: As the time passed he/she is to lazy to do that because no template/config/cli/whatever for authoring the component in that way.
+## Motivation
+There is a time when developer involved in a project then build component to solve specific problem 😎.
+One day this developer happen to do the same thing again in different project with slight alteration 😏.
+Then doing it again, and again, and again 😫.
+Now this developer have build many component with the same topic 😂.
+So, why not publish it as a single component with that one topic in mind to npm? 😲
+However, the component must be showcased in [mvce](https://stackoverflow.com/help/mcve) style to make it easy to understand and maintainable 😖.
+As the time passed, he/she is to lazy to do that because no template/config/cli/whatever for authoring the component in that way :poop:.
 
 ## Usage
 ```bash
 vue init DrSensor/vue-authoring-template
+```
+to build component use
+```
+yarn build
+```
+to build the storybook use
+```
+yarn storybook:build
+```
+to start it in development mode (only development mode is supported) use
+```
+yarn storybook
 ```
 
 ## Project Structure
