@@ -64,19 +64,16 @@ template
 ```
 
 ## Feature
+- support `vue init` cli workflow
 - Prebuilt [circleci](https:circleci.com) config to build, deploy, and evaluate pull-requests. By default its deployed to [surge.sh](https://surge.sh)
-- Preinstall and configured storybook addon and webpack loader:
-  - @storybook/addon-console for outputing console
-  - `storybook-readme` for insert `README.md` into the book (still buggy in `withDocs` function)
-  - `raw-loader` to make it able to import markdown or text file
 - Order the story/scenario alphabetically or define it using `Array`/`Object` in `stories/config.js`
+- Preinstall and configured storybook addon
 
 ## TODO
 - Integrate `@storybook/addon-knobs`
 - Make adding knobs and chaining the addon on each scenario in elegant way
 - Leverage `vue-loader` [custom block](https://vue-loader.vuejs.org/en/configurations/custom-blocks.html) for defining docs, info, and notes. (or maybe knobs but still don't have idea how to integrate it with `<template>` and/or `<script>` tag). Note that custom blocks can only be used in story.
 - Customize style of the storybook
-- support `vue init` cli workflow (still in progress)
 
 ## Support
 See [CONTRIBUTING.md](https://github.com/DrSensor/vue-authoring-template/blob/master/CONTRIBUTING.md) for contributing directly via:

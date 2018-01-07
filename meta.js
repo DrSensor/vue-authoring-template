@@ -1,8 +1,10 @@
 const path = require('path')
+const fs = require('fs')
 const {
   sortDependencies,
   installDependencies,
   runLintFix,
+  toPascalCase,
   printMessage
 } = require('./utils')
 const pkg = require('./package.json')
@@ -15,8 +17,12 @@ module.exports = {
       if (v1 || v2) {
         return options.fn(this)
       }
-
       return options.inverse(this)
+    },
+    pascalCase: text => toPascalCase(text),
+    isEnabled (list, check, options) {
+      if (list[check]) return options.fn(this)
+      else return options.inverse(this)
     },
     template_version () {
       return templateVersion
@@ -39,6 +45,58 @@ module.exports = {
       type: 'string',
       message: 'Author'
     },
+    addons: {
+      type: 'checkbox',
+      message:
+        'Select which storybook-addon you want to add',
+      choices: [
+        'knobs',
+        'notes',
+        'info',
+        'readme',
+        'console'
+      ],
+      default: [
+        'knobs',
+        'notes',
+        'readme'
+      ]
+    },
+    customBlocks: {
+      type: 'confirm',
+      // when: 'addons',
+      message: 'Enable custom-blocks?'
+    },
+    useci: {
+      type: 'confirm',
+      message: 'Add circleci for Continuos Build?'
+    },
+    ci: {
+      type: 'checkbox',
+      when: 'useci',
+      message:
+        'Configure circleci for Continuos Deployment',
+      choices: [
+        {
+          name: 'Publish to NPM',
+          value: 'publish',
+          short: 'npm'
+        },
+        {
+          name: 'Deploy storybook to surge.sh',
+          value: 'deploy',
+          short: 'surge'
+        }
+      ],
+      default: [
+        'publish',
+        'deploy'
+      ]
+    },
+    alphabetical: {
+      type: 'confirm',
+      message: 'Sort story and scenario in alphabetical order?'
+    },
     autoInstall: {
       type: 'list',
       message:
@@ -60,34 +118,14 @@ module.exports = {
           short: 'no'
         }
       ]
-    },
-    addons: {
-      type: 'checkbox',
-      message:
-        'Select which addon you want to add',
-      choices: [
-        'knobs',
-        'notes',
-        'info',
-        'readme',
-        'console'
-      ],
-      default: [
-        'knobs',
-        'readme',
-        'console'
-      ]
-    },
-    customBlocks: {
-      type: 'confirm',
-      message: 'Enable custom-blocks?'
     }
   },
   filters: {
-    '.loader/*': 'customBlocks',
-    '.loader/docs-loader': 'addons.readme',
-    '.loader/info-loader': 'addons.info',
-    '.loader/notes-loader': 'addons.notes'
+    '.circleci/*': 'useci',
+    '.loader/docs-loader.js': 'addons.readme && customBlocks',
+    '.loader/info-loader.js': 'addons.info && customBlocks',
+    '.loader/notes-loader.js': 'addons.notes && customBlocks',
+    '.loader/knobs-loader.js': 'addons.knobs && customBlocks'
   },
   complete: function (data, { chalk }) {
     const green = chalk.green
@@ -96,7 +134,9 @@ module.exports = {
 
     const cwd = path.join(process.cwd(), data.inPlace ? '' : data.destDirName)
 
-    console.log(data)
+    const src = path.join(cwd, './components/HelloWorld.vue')
+    const target = path.join(cwd, `./components/${toPascalCase(data.name)}.vue`)
+    fs.renameSync(src, target)
 
     if (data.autoInstall) {
       installDependencies(cwd, data.autoInstall, green)

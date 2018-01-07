@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: build storybook
-          command: yarn storybook:build
+          command: yarn build:storybook
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -47,6 +47,7 @@ jobs:
             - node_modules
             - yarn.lock
 
+{{#isEnabled ci 'publish'}}
   publish:
     <<: *defaults
     steps:
@@ -58,11 +59,13 @@ jobs:
           at: ~/repo
       - run:
           name: build component
-          command: yarn build
+          command: yarn build:component
       - run:
           name: publish to npm
           command: npm publish
+{{/isEnabled}}
 
+{{#isEnabled ci 'deploy'}}
   deploy:
     <<: *defaults
     steps:
@@ -71,13 +74,14 @@ jobs:
       - <<: *env
       - run:
           name: deploy storybook to surge.sh
-          command: yarn deploy-storybook -- --domain ${CIRCLE_PROJECT_REPONAME}$CIRCLE_PR_NUMBER.surge.sh
+          command: yarn deploy -- --domain ${CIRCLE_PROJECT_REPONAME}$CIRCLE_PR_NUMBER.surge.sh
       - run: 
           name: teardown if PR is merged
           command: |
             if [[ $MERGE_PR_NUMBER ]]; then
               yarn surge teardown ${CIRCLE_PROJECT_REPONAME}$MERGE_PR_NUMBER.surge.sh;
             fi
+{{/isEnabled}}
 
 workflows:
   version: 2
@@ -87,9 +91,12 @@ workflows:
           filters:
             tags:
               only: /.*/
+{{#isEnabled ci 'deploy'}}
       - deploy:
           requires:
             - build
+{{/isEnabled}}
+{{#isEnabled ci 'publish'}}
       - publish:
           requires:
             - build
@@ -98,4 +105,5 @@ workflows:
               only: /^v\d+[.]\d+[.]\d+$/
             branches:
               ignore: /.*/
+  {{/isEnabled}}
 

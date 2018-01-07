@@ -5,6 +5,24 @@ const spawn = require('child_process').spawn
 const lintStyles = ['standard', 'airbnb']
 
 /**
+ * Convert a string to Pascal Case (removing non alphabetic characters).
+ *
+ * @example
+ * 'hello_world'.toPascalCase() // Will return `HelloWorld`.
+ * 'fOO BAR'.toPascalCase()     // Will return `FooBar`.
+ *
+ * @returns {string}
+ *   The Pascal Cased string.
+ */
+exports.toPascalCase = function (text) {
+  return text.match(/[a-z]+/gi)
+    .map(word => {
+      return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
+    })
+    .join('')
+}
+
+/**
  * Sorts dependencies in package.json alphabetically.
  * They are unsorted because they were grouped for the handlebars helpers
  * @param {object} data Data from questionnaire

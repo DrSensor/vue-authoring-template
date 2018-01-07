@@ -2,21 +2,28 @@
 
 import { storiesOf } from '@storybook/vue'
 import { storyOrder, scenarioOrder } from './config.js'
+{{#isEnabled addons 'notes'}}
 import { withNotes } from '@storybook/addon-notes'
-// import { action } from '@storybook/addon-actions'
-// import { withDocs } from 'storybook-readme'
-// import { withInfo } from '@storybook/addon-info'
+{{/isEnabled}}
+{{#isEnabled addons 'readme'}}
+import { withDocs } from 'storybook-readme'
+{{/isEnabled}}
+{{#isEnabled addons 'info'}}
+import { withInfo } from '@storybook/addon-info'
+{{/isEnabled}}
 
-// import {
-//   text,
-//   number,
-//   boolean,
-//   array,
-//   select,
-//   color,
-//   date,
-//   button
-// } from '@storybook/addon-knobs'
+{{#isEnabled addons 'knobs'}}
+import {
+  text,
+  number,
+  boolean,
+  array,
+  select,
+  color,
+  date,
+  button
+} from '@storybook/addon-knobs/vue'
+{{/isEnabled}}
 
 require.context('.', true, /\.vue$/).keys()
   .sort((a, b) => { // sort by storyOrder
@@ -47,11 +54,16 @@ require.context('.', true, /\.vue$/).keys()
       const Component = require(`${filename}`).default
 
       const story = () => {
-        /** INSERT THE KNOB HERE */
+{{#isEnabled addons 'knobs'}}
+        /**|KNOBS HERE| label   default value  */
+        let helloText = text('text', 'hello world!!!')
+{{else}}
+        let helloText = 'hello world!!!'
+{{/isEnabled}}
 
         return {
           render () {
-            return <story />
+            return <story hello={helloText} />
           },
           components: {
             'story': Component
@@ -59,13 +71,22 @@ require.context('.', true, /\.vue$/).keys()
         }
       }
 
+{{#if customBlocks}}
       /** CHAIN THE CUSTOM BLOCK WITH THE storybook-addon HERE */
-      // console.log(Component.__notes, Component.__docs, Component.__info)
-      const storyWithNotes = withNotes(Component.__notes || '')(story)
-      // const storyWithInfo = withInfo(Component.__info || '')(story) // BUG: not support Vue Component
-      // const storyWithDocs = withDocs(Component.__docs || '', storyWithNotes) // WIP: https://github.com/tuchk4/storybook-readme/issues/37
-
-      Stories.add(componentName, storyWithNotes)
+      let storyWithAddons = story
+{{#isEnabled addons 'notes'}}
+      storyWithAddons = withNotes(Component.__notes || '')(storyWithAddons)
+{{/isEnabled}}
+{{#isEnabled addons 'info'}}
+      storyWithAddons = withInfo(Component.__info || '')(storyWithAddons) // BUG: not support Vue Component
+{{/isEnabled}}
+{{#isEnabled addons 'readme'}}
+      storyWithAddons = withDocs(Component.__docs || '', storyWithAddons) // WIP: https://github.com/tuchk4/storybook-readme/issues/37
+{{/isEnabled}}
+      Stories.add(componentName, storyWithAddons)
+{{else}}
+      Stories.add(componentName, story)
+{{/if}}
     }
   })
 

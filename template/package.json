@@ -1,8 +1,8 @@
 {
-  "name": "vue-authoring-template",
+  "name": "{{name}}",
   "version": "0.1.0",
-  "description": "Vue template for help authoring component",
-  "homepage": "http://vue-authoring-template.surge.sh",
+  "description": "{{description}}",
+  "homepage": "http://{{name}}.surge.sh",
   "keyword": [
     "vue",
     "component"
@@ -10,20 +10,29 @@
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
-  "bugs": "https://github.com/DrSensor/vue-authoring-template/issues",
   "scripts": {
-    "storybook": "poi --config .storybook/poi.config.js --storybook --open",
-    "storybook:build": "poi build --config .storybook/poi.config.js --storybook",
-    "deploy-storybook": "surge .storybook/dist",
-    "build": "poi build src/Annotator.vue --component index"
+    "dev": "poi --config .storybook/poi.config.js --storybook --open",
+    "build:storybook": "poi build --config .storybook/poi.config.js --storybook",
+    "build:component": "poi build components/{{pascalCase name}}.vue --component index",
+    "deploy": "surge .storybook/dist"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.13",
-    "@storybook/addon-centered": "^3.2.19",
+{{#isEnabled addons 'notes'}}
     "@storybook/addon-console": "^1.0.0",
+{{/isEnabled}}
+{{#isEnabled addons 'info'}}
     "@storybook/addon-info": "^3.2.19",
+{{/isEnabled}}
+{{#isEnabled addons 'knobs'}}
     "@storybook/addon-knobs": "^3.2.19",
+{{/isEnabled}}
+{{#isEnabled addons 'notes'}}
     "@storybook/addon-notes": "^3.2.19",
+{{/isEnabled}}
+{{#isEnabled addons 'readme'}}
+    "storybook-readme": "^3.1.1",
+{{/isEnabled}}
     "@storybook/addon-options": "^3.2.19",
     "@storybook/vue": "^3.2.19",
     "marked": "^0.3.9",
@@ -31,7 +40,6 @@
     "poi-preset-resolve-alias": "^1.0.1",
     "poi-preset-storybook": "^0.1.3",
     "raw-loader": "^0.5.1",
-    "storybook-readme": "^3.1.1",
     "surge": "^0.19.0"
   },
   "peerDependencies": {},
