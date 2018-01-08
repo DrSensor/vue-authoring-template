@@ -1,10 +1,8 @@
 # vue-authoring-template (Work In Progress)
 [![CircleCI](https://circleci.com/gh/DrSensor/vue-authoring-template.svg?style=shield)](https://circleci.com/gh/DrSensor/vue-authoring-template)
-<!-- [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat-square)](https://github.com/DrSensor/vue-authoring-template/blob/master/DONATE.md) -->
+[![donate](https://img.shields.io/badge/donate-$-green.svg?maxAge=2592000&style=flat-square)](https://github.com/DrSensor/vue-authoring-template/blob/master/DONATE.md)
 
-Currently this project main goal is to help authoring Vue component with it's use case.
-
-> Warning: not yet manually tested
+This template is to help authoring Vue component with it's use case.
 
 ## Motivation
 There is a time when developer involved in a project then build component to solve specific problem 😎.
@@ -19,24 +17,24 @@ As the time passed, he/she is to lazy to do that because no template/config/cli/
 ```bash
 vue init DrSensor/vue-authoring-template
 ```
-to build component use
+
+to build vue component use
 ```
-yarn build
+[npm|yarn] build:component
 ```
 to build the storybook use
 ```
-yarn storybook:build
+[npm|yarn] build:storybook
 ```
 to start it in development mode (only development mode is supported) use
 ```
-yarn storybook
+[npm|yarn] dev
 ```
 
 ## Project Structure
 ```markdown
-template
+.
 ├── package.json            // choose and configure the component you want to package in here (still need to edit `scripts: {}` block)
-├── FOOTER.md               // [addon: storybook/readme] footer to show at the bottom of scenario description (currently not working)
 ├── .editorconfig
 ├── .gitignore
 │
@@ -60,7 +58,7 @@ template
     ├── Story2
     ├── Story3
     ├── config.js           // config to order the story and the scenario
-    └── index.js            // chain and add the addon here (looking for elegant way to add Knob)
+    └── index.js            // chain and add the addon here
 ```
 
 ## Feature
@@ -69,18 +67,14 @@ template
 - Order the story/scenario alphabetically or define it using `Array`/`Object` in `stories/config.js`
 - Preinstall and configured storybook addon
 
-## TODO
-- Integrate `@storybook/addon-knobs`
+## Looking for suggestion (Open New Isuues)
 - Make adding knobs and chaining the addon on each scenario in elegant way
-- Leverage `vue-loader` [custom block](https://vue-loader.vuejs.org/en/configurations/custom-blocks.html) for defining docs, info, and notes. (or maybe knobs but still don't have idea how to integrate it with `<template>` and/or `<script>` tag). Note that custom blocks can only be used in story.
 - Customize style of the storybook
 
 ## Support
 See [CONTRIBUTING.md](https://github.com/DrSensor/vue-authoring-template/blob/master/CONTRIBUTING.md) for contributing directly via:
 - [Pull Requests](https://github.com/DrSensor/vue-authoring-template/blob/master/CONTRIBUTING.md/#pull-requests) or
 - [Create Issues](https://github.com/DrSensor/vue-authoring-template/blob/master/CONTRIBUTING.md/#create-issues)
-
-<!-- For donation see [DONATE.md](https://github.com/DrSensor/vue-authoring-template/blob/master/DONATE.md) -->
 
 ## License
 [MIT](https://github.com/DrSensor/vue-authoring-template/blob/master/LICENSE) License

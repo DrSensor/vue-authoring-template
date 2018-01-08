@@ -5,6 +5,7 @@
 
 Thank you for your interest in donating [vue-authoring-template](https://github.com/DrSensor/vue-authoring-template) project. Currently I'm only accepting one-time donation for this project. If you want to make recurring pledge or monthly donation feel free to contact [me](http://drsensor.surge.sh/aboutme).
 
+---
 ## One-time donation
 Currently I only have this list for accepting donation. If you want to donate in another way feel free to contact [me](http://drsensor.surge.sh/aboutme)
 

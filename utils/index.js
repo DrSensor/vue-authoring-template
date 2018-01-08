@@ -2,8 +2,6 @@ const path = require('path')
 const fs = require('fs')
 const spawn = require('child_process').spawn
 
-const lintStyles = ['standard', 'airbnb']
-
 /**
  * Convert a string to Pascal Case (removing non alphabetic characters).
  *
@@ -56,62 +54,48 @@ exports.installDependencies = function installDependencies (
 }
 
 /**
- * Runs `npm run lint -- --fix` in the project directory
- * @param {string} cwd Path of the created project directory
- * @param {object} data Data from questionnaire
- */
-exports.runLintFix = function runLintFix (cwd, data, color) {
-  if (data.lint && lintStyles.indexOf(data.lintConfig) !== -1) {
-    console.log(
-      `\n\n${color(
-        'Running eslint --fix to comply with chosen preset rules...'
-      )}`
-    )
-    console.log('# ========================\n')
-    const args =
-      data.autoInstall === 'npm'
-        ? ['run', 'lint', '--', '--fix']
-        : ['run', 'lint', '--fix']
-    return runCommand(data.autoInstall, args, {
-      cwd
-    })
-  }
-  return Promise.resolve()
-}
-
-/**
  * Prints the final message with instructions of necessary next steps.
  * @param {Object} data Data from questionnaire.
  */
-exports.printMessage = function printMessage (data, { green, yellow }) {
+exports.printMessage = function printMessage (data, { green, yellow, magenta }) {
   const message = `
 # ${green('Project initialization finished!')}
 # ========================
+For more information about configuring the storybook see https://storybook.js.org/basics/guide-vue/
 
 To get started:
 
   ${yellow(
       `${data.inPlace ? '' : `cd ${data.destDirName}\n  `}${installMsg(
         data
-      )}${lintMsg(data)}npm run dev`
+      )}npm run dev`
     )}
-  
-Documentation can be found at https://vuejs-templates.github.io/webpack
+
+List of command:
+
+    ${green('npm run dev')} \t:\t running in development mode
+    ${green('npm run build:storybook')} \t:\t build storybook page
+    ${green('npm run build:component')} \t:\t build .vue component into .js
+    ${green('npm run deploy')} \t:\t deploying into surge.sh
+
+${custBlcksMsg(data, magenta)}
 `
   console.log(message)
 }
 
 /**
- * If the user will have to run lint --fix themselves, it returns a string
+ * If the user choose to use customBlocks, it return a string
  * containing the instruction for this step.
- * @param {Object} data Data from questionnaire.
+ * @param {Object} data Data from the questionnaire
  */
-function lintMsg (data) {
-  return !data.autoInstall &&
-    data.lint &&
-    lintStyles.indexOf(data.lintConfig) !== -1
-    ? 'npm run lint -- --fix (or for yarn: yarn run lint --fix)\n  '
-    : ''
+function custBlcksMsg (data, color) {
+  if (data.customBlocks) {
+    return `
+    To add more custom-blocks, you need to write custom webpack-loader and place it to ${color('.loader/')}.
+    Then ${color('require.resolve(.loader/<your-loader>.js')} into vue.loaders config at ${color('.storybook/poi.config.js')}
+    \n
+    `
+  }
 }
 
 /**

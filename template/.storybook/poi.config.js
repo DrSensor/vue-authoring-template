@@ -5,6 +5,7 @@ function resolve (dir) {
 }
 
 module.exports = {
+{{#if customBlocks}}
   /** KNOWN BUG(in vue-loader maybe, not yet verified): Can't use lazy load import when specify custom loader */
   vue: {
     loaders: {
@@ -19,6 +20,7 @@ module.exports = {
 {{/isEnabled}}
     }
   },
+{{/if}}
 
   // Entry is relative to process.cwd()
   entry: [
