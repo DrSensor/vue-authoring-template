@@ -5,10 +5,7 @@ import { setOptions as masterOptions } from '@storybook/addon-options'
 import { setDefaults as infoOptions } from '@storybook/addon-info'
 {{/isEnabled}}
 {{#isEnabled addons 'readme'}}
-import { withDocs, withReadme } from 'storybook-readme'
-{{/isEnabled}}
-{{#isEnabled addons 'console'}}
-import { withConsole } from '@storybook/addon-console'
+import { withReadme } from 'storybook-readme'
 {{/isEnabled}}
 {{#isEnabled addons 'knobs'}}
 import { withKnobs } from '@storybook/addon-knobs/dist/vue'
@@ -16,17 +13,10 @@ import { withKnobs } from '@storybook/addon-knobs/dist/vue'
 
 {{#isEnabled addons 'readme'}}
 import Readme from '../README.md'
-import Footer from '../FOOTER.md'
-{{/isEnabled}}
-
-{{#isEnabled addons 'console'}}
-const optionsCallback = (options) => ({ panelExclude: [...options.panelExclude, /Warning/] })
-addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context))
 {{/isEnabled}}
 
 {{#isEnabled addons 'readme'}}
 addDecorator(withReadme(Readme))
-withDocs.addFooter(Footer)
 {{/isEnabled}}
 
 {{#isEnabled addons 'knobs'}}

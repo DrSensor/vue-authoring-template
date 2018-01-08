@@ -57,12 +57,13 @@ module.exports = {
           short: 'info'
         },
         'readme',
-        'console'
+        'actions'
       ],
       default: [
         'knobs',
         'notes',
-        'readme'
+        'readme',
+        'actions'
       ]
     },
     customBlocks: {
@@ -127,7 +128,7 @@ module.exports = {
   },
   filters: {
     '.circleci/*': 'useci',
-    'FOOTER.md': 'addons.readme',
+    'FOOTER.md': 'addons.readme && customBlocks',
     '.loader/docs-loader.js': 'addons.readme && customBlocks',
     '.loader/info-loader.js': 'addons.info && customBlocks',
     '.loader/notes-loader.js': 'addons.notes && customBlocks',

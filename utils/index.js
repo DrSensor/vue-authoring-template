@@ -101,7 +101,7 @@ function custBlcksMsg (data, color) {
     Then ${color('require.resolve(.loader/<your-loader>.js')} into vue.loaders config at ${color('.storybook/poi.config.js')}
     \n
     `
-  } else return '^[K'
+  } else return ''
 }
 
 /**

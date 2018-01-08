@@ -2,6 +2,8 @@
 
 import { storiesOf } from '@storybook/vue'
 import { storyOrder, scenarioOrder } from './config.js'
+
+{{#if customBlocks}}
 {{#isEnabled addons 'notes'}}
 import { withNotes } from '@storybook/addon-notes'
 {{/isEnabled}}
@@ -11,19 +13,7 @@ import { withDocs } from 'storybook-readme'
 {{#isEnabled addons 'info'}}
 import { withInfo } from '@storybook/addon-info'
 {{/isEnabled}}
-
-{{#isEnabled addons 'knobs'}}
-import {
-  text,
-  number,
-  boolean,
-  array,
-  select,
-  color,
-  date,
-  button
-} from '@storybook/addon-knobs/vue'
-{{/isEnabled}}
+{{/if}}
 
 require.context('.', true, /\.vue$/).keys()
   .sort((a, b) => { // sort by storyOrder
@@ -56,16 +46,9 @@ require.context('.', true, /\.vue$/).keys()
       const Component = require(`${filename}`).default
 
       const story = () => {
-{{#isEnabled addons 'knobs'}}
-        /**|KNOBS HERE| label   default value  */
-        let helloText = text('text', 'hello world!!!')
-{{else}}
-        let helloText = 'hello world!!!'
-{{/isEnabled}}
-
         return {
           render () {
-            return <story hello={helloText} />
+            return <story />
           },
           components: {
             'story': Component

@@ -68,7 +68,7 @@ to start it in development mode (only development mode is supported) use
 - Preinstall and configured storybook addon
 
 ## Looking for suggestion (Open New Isuues)
-- Make adding knobs and chaining the addon on each scenario in elegant way
+- Make chaining the addon on each scenario in elegant way
 - Customize style of the storybook
 
 ## Support

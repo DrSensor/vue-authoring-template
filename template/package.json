@@ -17,9 +17,8 @@
     "deploy": "surge .storybook/dist"
   },
   "devDependencies": {
+{{#isEnabled addons 'actions'}}    
     "@storybook/addon-actions": "^3.2.13",
-{{#isEnabled addons 'notes'}}
-    "@storybook/addon-console": "^1.0.0",
 {{/isEnabled}}
 {{#isEnabled addons 'info'}}
     "@storybook/addon-info": "^3.2.19",
