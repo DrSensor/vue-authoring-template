@@ -73,12 +73,18 @@ To get started:
 
 List of command:
 
-    ${green('npm run dev')} \t:\t running in development mode
-    ${green('npm run build:storybook')} \t:\t build storybook page
-    ${green('npm run build:component')} \t:\t build .vue component into .js
-    ${green('npm run deploy')} \t:\t deploying into surge.sh
+    ${green('npm run dev')} \t\t: running in development mode
+    ${green('npm run build:storybook')} \t: build storybook page
+    ${green('npm run build:component')} \t: build .vue component into .js
+    ${green('npm run deploy')} \t\t: deploying into surge.sh
 
 ${custBlcksMsg(data, magenta)}
+
+${data.addons.info && custBlcksMsg
+  ? `Thank you for trying experimental features.
+  If you find bugs and/or have suggestion, feel free to open issue https://github.com/DrSensor/vue-authoring-template/issues/new
+`
+: `For more information consult https://github.com/DrSensor/vue-authoring-template`}
 `
   console.log(message)
 }
@@ -95,7 +101,7 @@ function custBlcksMsg (data, color) {
     Then ${color('require.resolve(.loader/<your-loader>.js')} into vue.loaders config at ${color('.storybook/poi.config.js')}
     \n
     `
-  }
+  } else return '^[K'
 }
 
 /**

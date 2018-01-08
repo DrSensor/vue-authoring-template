@@ -1,8 +1,8 @@
-# vue-authoring-template (Work In Progress)
-[![CircleCI](https://circleci.com/gh/DrSensor/vue-authoring-template.svg?style=shield)](https://circleci.com/gh/DrSensor/vue-authoring-template)
+# vue-authoring-template
+<!-- [![CircleCI](https://circleci.com/gh/DrSensor/vue-authoring-template.svg?style=shield)](https://circleci.com/gh/DrSensor/vue-authoring-template) -->
 [![donate](https://img.shields.io/badge/donate-$-green.svg?maxAge=2592000&style=flat-square)](https://github.com/DrSensor/vue-authoring-template/blob/master/DONATE.md)
 
-This template is to help authoring Vue component with it's use case.
+This template is to help authoring Vue component with it's use case in story-scenario (storybook) format.
 
 ## Motivation
 There is a time when developer involved in a project then build component to solve specific problem 😎.

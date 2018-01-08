@@ -29,7 +29,9 @@ require.context('.', true, /\.vue$/).keys()
   .sort((a, b) => { // sort by storyOrder
     a = a.split('/').map(s => s.replace('.vue', ''))
     b = b.split('/').map(s => s.replace('.vue', ''))
-    let order = storyOrder.indexOf(a[1]) - storyOrder.indexOf(b[1])
+
+    if (storyOrder) var order = storyOrder.indexOf(a[1]) - storyOrder.indexOf(b[1])
+    else order = a[1].charAt(0).toUpperCase() - b[1].charAt(0).toUpperCase() // sort alphabetically
 
     if (order !== 0) {
       if (scenarioOrder === undefined) { // sort alphabetically

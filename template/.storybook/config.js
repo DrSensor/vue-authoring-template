@@ -24,7 +24,7 @@ const optionsCallback = (options) => ({ panelExclude: [...options.panelExclude, 
 addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context))
 {{/isEnabled}}
 
-{{#isEnabled addons 'info'}}
+{{#isEnabled addons 'readme'}}
 addDecorator(withReadme(Readme))
 withDocs.addFooter(Footer)
 {{/isEnabled}}

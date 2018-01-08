@@ -3,7 +3,6 @@ const fs = require('fs')
 const {
   sortDependencies,
   installDependencies,
-  runLintFix,
   toPascalCase,
   printMessage
 } = require('./utils')
@@ -52,7 +51,11 @@ module.exports = {
       choices: [
         'knobs',
         'notes',
-        'info',
+        {
+          name: 'info (experimental)',
+          value: 'info',
+          short: 'info'
+        },
         'readme',
         'console'
       ],
@@ -64,8 +67,9 @@ module.exports = {
     },
     customBlocks: {
       type: 'confirm',
-      // when: 'addons',
-      message: 'Enable custom-blocks?'
+      when: 'addons.notes || addons.info || addons.readme',
+      message: 'Enable custom-blocks? (experimental)',
+      default: false
     },
     useci: {
       type: 'confirm',
@@ -95,7 +99,8 @@ module.exports = {
     },
     alphabetical: {
       type: 'confirm',
-      message: 'Sort story and scenario in alphabetical order?'
+      message: 'Sort story and scenario in alphabetical order?',
+      default: false
     },
     autoInstall: {
       type: 'list',
@@ -122,10 +127,10 @@ module.exports = {
   },
   filters: {
     '.circleci/*': 'useci',
+    'FOOTER.md': 'addons.readme',
     '.loader/docs-loader.js': 'addons.readme && customBlocks',
     '.loader/info-loader.js': 'addons.info && customBlocks',
     '.loader/notes-loader.js': 'addons.notes && customBlocks',
-    '.loader/knobs-loader.js': 'addons.knobs && customBlocks'
   },
   complete: function (data, { chalk }) {
     const green = chalk.green
@@ -140,9 +145,6 @@ module.exports = {
 
     if (data.autoInstall) {
       installDependencies(cwd, data.autoInstall, green)
-        .then(() => {
-          return runLintFix(cwd, data, green)
-        })
         .then(() => {
           printMessage(data, green)
         })
