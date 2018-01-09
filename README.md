@@ -70,6 +70,7 @@ to start it in development mode (only development mode is supported) use
 ## Looking for suggestion (Open New Isuues)
 - Make chaining the addon on each scenario in elegant way
 - Customize style of the storybook
+- and others
 
 ## Support
 See [CONTRIBUTING.md](https://github.com/DrSensor/vue-authoring-template/blob/master/CONTRIBUTING.md) for contributing directly via:

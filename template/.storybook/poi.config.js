@@ -1,5 +1,7 @@
 const path = require('path')
+{{#isEnabled addons 'readme'}}
 const updateWebpackConfig = require('storybook-readme/env/vue/updateWebpackConfig')
+{{/isEnabled}}
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -24,7 +26,14 @@ module.exports = {
 {{/if}}
 
   webpack (config) {
-    return updateWebpackConfig(config) // <-- Important, must return it
+    return updateWebpackConfig(config)
+  },
+
+  extendWebpack (config) {
+    config.module.rule('markdown')
+      .test(/\.md$/)
+      .use('html').loader(require.resolve('html-loader')).end()
+      .use('markdown').loader(require.resolve('markdown-loader'))
   },
 
   // Entry is relative to process.cwd()
