@@ -8,9 +8,6 @@
 </template>
 
 <script>
-{{#isEnabled addons 'actions'}}
-import { action } from '@storybook/addon-actions'
-{{/isEnabled}}
 {{#isEnabled addons 'knobs'}}
 /**@see https://github.com/storybooks/storybook/tree/master/addons/knobs#available-knobs */
 import { text } from '@storybook/addon-knobs/vue'
@@ -32,9 +29,12 @@ export default {
   },
 {{#isEnabled addons 'actions'}}
   methods: {
+    action (label, data) {
+      this.$emit('action', label, data)
+    },
     clicked () {
       this.show = !this.show
-      action(this.show ? 'hide': 'show')
+      this.action('button-click', this.show)
     }
   }
 {{/isEnabled}}

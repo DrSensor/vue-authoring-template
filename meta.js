@@ -61,7 +61,6 @@ module.exports = {
       ],
       default: [
         'knobs',
-        'notes',
         'readme',
         'actions'
       ]

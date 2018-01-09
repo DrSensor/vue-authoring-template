@@ -15,6 +15,10 @@ import { withInfo } from '@storybook/addon-info'
 {{/isEnabled}}
 {{/if}}
 
+{{#isEnabled addons 'actions'}}
+import { action } from '@storybook/addon-actions'
+{{/isEnabled}}
+
 require.context('.', true, /\.vue$/).keys()
   .sort((a, b) => { // sort by storyOrder
     a = a.split('/').map(s => s.replace('.vue', ''))
@@ -46,9 +50,10 @@ require.context('.', true, /\.vue$/).keys()
       const Component = require(`${filename}`).default
 
       const story = () => {
+        let eventCounter = 0
         return {
           render () {
-            return <story />
+            return <story {{#isEnabled addons 'actions'}}onAction={action(`action ${++eventCounter}`)} {{/isEnabled}}/>
           },
           components: {
             'story': Component
