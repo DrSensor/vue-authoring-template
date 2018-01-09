@@ -1,4 +1,5 @@
 const path = require('path')
+const updateWebpackConfig = require('storybook-readme/env/vue/updateWebpackConfig')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -22,18 +23,15 @@ module.exports = {
   },
 {{/if}}
 
+  webpack (config) {
+    return updateWebpackConfig(config) // <-- Important, must return it
+  },
+
   // Entry is relative to process.cwd()
   entry: [
     '.storybook/config.js',
     '.storybook/addons.js'
   ],
-
-  extendWebpack (config) {
-    config.module.rule('markdown')
-      .test(/\.md$/)
-      .use('md')
-      .loader(require.resolve('raw-loader'))
-  },
 
   dist: '.storybook/dist',
 
