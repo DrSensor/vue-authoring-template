@@ -1,4 +1,4 @@
-# Contributing to F.I.D.E
+# Contributing to vue-authoring
 
 vue-authoring-template is a community-driven project. As such, we welcome and encourage all sorts of
 contributions. They include, but are not limited to:

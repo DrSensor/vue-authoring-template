@@ -1,9 +1,11 @@
 <template>
   <div>
-    <button @click="clicked">
+    <button @click="clicked" :class="toggle ? 'primary' : 'secondary'">
       \{{hello}}
     </button>
-    <slot></slot>
+    <div :class="toggle ? 'secondary' : 'primary'" style="cursor: unset">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -17,8 +19,16 @@ export default {
       default: ''
     },
   },
+
+  data () {
+    return {
+      toggle: true
+    }
+  },
+
   methods: {
     clicked () {
+      this.toggle = !this.toggle
       this.$emit('click', this.hello)
     }
   }
@@ -26,5 +36,29 @@ export default {
 </script>
 
 <style scoped>
+.primary {
+  background-color: lightcyan;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 
+.secondary {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 </style>
