@@ -10,6 +10,7 @@ This template is to help authoring Vue component with it's use case in story-sce
 
 ![](./screenplay.gif)
 
+Authoring component and publish it to `npm` for later use can help reduce complexity of big project.
 ## Motivation
 1. There is a time when developer involved in a project then build component to solve specific problem 😎.
 2. One day this developer happen to do the same thing again in different project with slight alteration 😏.

@@ -20,6 +20,40 @@ npm run install
 {{#if_eq autoInstall 'yarn'}}yarn{{else}}npm run{{/if_eq}} build:component
 ```
 
----
 
-This stories was generated with [vue-authoring-template](https://github.com/DrSensor/vue-authoring-template) using [vue-cli](https://github.com/vuejs/vue-cli).
+
+## Usage
+
+```html
+<{{name}} hello="Hello world!!!" @click="clicked">
+</{{name}}>
+```
+
+```js
+  methods: {
+    clicked (helloText) {
+      console.log(helloText)
+    }
+  }
+```
+
+### Props
+
+| Prop name | Description | Type | Required | Default value |
+|---------- |-------- |---------- |---------- |---------- |
+| `hello` | set hello text | `String` | no | `''` |
+
+### Events
+
+| Event name | Description | Parameters |
+|---------- |-------- |---------- |
+| `click` | fire when hello text is clicked | helloText: `String` |
+
+### Slots
+
+| Slot name | Description | Accepted Element |
+|---------- |-------- |---------- |
+| `default` | slot without name are placed in default | `any` |
+
+---
+This component was generated with [vue-authoring-template](https://github.com/DrSensor/vue-authoring-template) using [vue-cli](https://github.com/vuejs/vue-cli).

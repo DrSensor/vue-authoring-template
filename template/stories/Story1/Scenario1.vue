@@ -1,9 +1,11 @@
 <template>
   <div>
-{{#isEnabled addons 'actions'}}
-    <button @click="clicked">\{{show ? 'hide': 'show'}}</button>
-{{/isEnabled}}
-    <{{pascalCase name}} :hello="hello" />
+    <{{name}}
+      :hello="hello"
+      @click="clicked"
+    >
+      <span>This is default slot</span>
+    </{{name}}>
   </div>
 </template>
 
@@ -19,24 +21,24 @@ export default {
   },
   data () {
     return {
-{{#isEnabled addons 'actions'}}
-      show: true,
-{{/isEnabled}}
 {{#isEnabled addons 'knobs'}}
       hello: text('hello text', 'Hello World!!!')
 {{/isEnabled}}      
     }
   },
-{{#isEnabled addons 'actions'}}
   methods: {
+{{#isEnabled addons 'actions'}}
     action (label, data) {
       this.$emit('action', label, data)
     },
-    clicked () {
-      this.show = !this.show
-      this.action('button-click', this.show)
+{{/isEnabled}}
+    clicked (helloText) {
+{{#isEnabled addons 'actions'}}
+      this.action('button-click', helloText)
+{{else}}
+      console.log(helloText)
+{{/isEnabled}}
     }
   }
-{{/isEnabled}}
 }
 </script>

@@ -76,15 +76,15 @@ List of command:
     ${green('npm run dev')} \t\t: running in development mode
     ${green('npm run build:storybook')} \t: build storybook page
     ${green('npm run build:component')} \t: build .vue component into .js
-    ${green('npm run deploy')} \t\t: deploying into surge.sh
+    ${green('npm run deploy')} \t\t: deploy into surge.sh
 
 ${custBlcksMsg(data, magenta)}
-
 ${data.addons.info && custBlcksMsg
   ? `Thank you for trying experimental features.
-  If you find bugs and/or have suggestion, feel free to open issue https://github.com/DrSensor/vue-authoring-template/issues/new
+  If you find bugs and/or have suggestion, feel free to open issue https://github.com/DrSensor/vue-authoring-template/issues/new \n
 `
-: `For more information consult https://github.com/DrSensor/vue-authoring-template`}
+: ``}
+Follow https://vuejs.org/v2/guide/components.html#Authoring-Reusable-Components for best practice.
 `
   console.log(message)
 }
