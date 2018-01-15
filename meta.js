@@ -139,8 +139,8 @@ module.exports = {
 
     const cwd = path.join(process.cwd(), data.inPlace ? '' : data.destDirName)
 
-    const src = path.join(cwd, './components/HelloWorld.vue')
-    const target = path.join(cwd, `./components/${toPascalCase(data.name)}.vue`)
+    const src = path.join(cwd, './src/components/HelloWorld.vue')
+    const target = path.join(cwd, `./src/components/${toPascalCase(data.name)}.vue`)
     fs.renameSync(src, target)
 
     if (data.autoInstall) {

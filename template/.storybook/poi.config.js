@@ -47,7 +47,8 @@ module.exports = {
   presets: [
     require('poi-preset-storybook')(),
     require('poi-preset-resolve-alias')({
-      '@': resolve('components'),
+      '@': resolve('src/components'),
+      'mix': resolve('src/mixins'),
       '~': resolve('')
     })
   ]

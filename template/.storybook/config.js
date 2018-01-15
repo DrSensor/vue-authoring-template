@@ -48,4 +48,4 @@ masterOptions({
 })
 {{/isEnabled}}
 
-configure(() => require('../stories'), module)
+configure(() => require('../src/stories'), module)

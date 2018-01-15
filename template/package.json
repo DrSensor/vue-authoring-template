@@ -7,13 +7,19 @@
     "vue",
     "component"
   ],
-  "main": "dist/index.js",
+  "main": "dist/{{name}}.js",
+  "files": [
+    "dist/",
+    "umd/",
+    "src/components/"
+  ],
   "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "poi --config .storybook/poi.config.js --storybook --open",
     "build:storybook": "poi build --config .storybook/poi.config.js --storybook",
-    "build:component": "poi build components/{{pascalCase name}}.vue --component index",
+    "build:component": "poi build src/components/{{pascalCase name}}.vue --library",
+    "build:component:umd": "poi build src/components/{{pascalCase name}}.vue --library {{pascalCase name}} --dist umd",
     "deploy": "surge .storybook/dist"
   },
   "devDependencies": {

@@ -10,7 +10,7 @@ This template is to help authoring Vue component with it's use case in story-sce
 
 ![](./screenplay.gif)
 
-Authoring component and publish it to `npm` for later use can help reduce complexity of big project.
+Authoring component and publish it to `npm` for later use can help reduce complexity <sup><sup><sup><sup><sup>by delegating the work of finding bug and adding feature</sup></sup></sup></sup></sup> of big/long-running project <sub><sub><sub><sub><sub>to the community</sub></sub></sub></sub></sub>
 ## Motivation
 1. There is a time when developer involved in a project then build component to solve specific problem 😎.
 2. One day this developer happen to do the same thing again in different project with slight alteration 😏.
@@ -57,23 +57,24 @@ After that,
 │   ├── config.js
 │   └── poi.config.js       // currently the template project use `poi` as alternative of `vue build`
 │
-├── components              // place 1 or more components to author here
-│   └── HelloWorld.vue
-│
-└── stories                 // use case or usage of the component written in story-scenario analogy
-    ├── Story1
-    │   └── Scenario1.vue
-    ├── Story2
-    ├── Story3
-    ├── config.js           // config to order the story and the scenario
-    └── index.js            // chain and add the addon here
+└── src
+    ├── components              // place 1 or more components to author here
+    │   └── HelloWorld.vue
+    │
+    └── stories                 // use case or usage of the component written in story-scenario analogy
+        ├── Story1
+        │   └── Scenario1.vue
+        ├── Story2
+        ├── Story3
+        ├── config.js           // config to order the story and the scenario
+        └── index.js            // chain and add the addon here
 ```
 
 ## Features
 - Support `vue init` workflow
 - Minimal configuration. Thanks to [poi](https://poi.js.org).
 - Prebuilt [circleci](https:circleci.com) config to build, deploy, and evaluate pull-requests. By default its deployed to [surge.sh](https://surge.sh).
-- Order the story-scenario *alphabetically* or define it using `Array`|`Object` in `stories/config.js`.
+- Order the story-scenario *alphabetically* or define it using `Array`|`Object` in `src/stories/config.js`.
 - Preinstall and configured storybook addon:
     - knobs
     - readme, info(experimental), and notes
