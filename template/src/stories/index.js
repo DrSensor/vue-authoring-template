@@ -14,9 +14,17 @@ import { withDocs } from 'storybook-readme'
 import { withInfo } from '@storybook/addon-info'
 {{/isEnabled}}
 {{/if}}
-
 {{#isEnabled addons 'actions'}}
 import { action } from '@storybook/addon-actions'
+import Vue from 'vue'
+
+Vue.mixin({
+  methods: {
+    $action (label, payload) {
+      this.$emit('action', label, payload)
+    }
+  }
+})
 {{/isEnabled}}
 
 require.context('.', true, /\.vue$/).keys()
@@ -50,10 +58,9 @@ require.context('.', true, /\.vue$/).keys()
       const Component = require(`${filename}`).default
 
       const story = () => {
-        let eventCounter = 0
         return {
           render () {
-            return <story {{#isEnabled addons 'actions'}}onAction={action(`action ${++eventCounter}`)} {{/isEnabled}}/>
+            return <story {{#isEnabled addons 'actions'}}onAction={action(`${storyName}/${componentName}`)} {{/isEnabled}}/>
           },
           components: {
             'story': Component

@@ -5,13 +5,17 @@
     </button>
     <div :class="toggle ? 'secondary' : 'primary'" style="cursor: unset">
       <slot></slot>
+      \{{textMix}}
     </div>
   </div>
 </template>
 
 <script>
+import mixUseless from '../mixins/useless-button'
+
 export default {
   name: '{{pascalCase name}}',
+  mixins: [mixUseless],
   props: {
     hello: {
       type: String,
@@ -29,7 +33,7 @@ export default {
   methods: {
     clicked () {
       this.toggle = !this.toggle
-      this.$emit('click', this.hello)
+      this.$action('click', [this.hello])
     }
   }
 }

@@ -61,6 +61,10 @@ After that,
     ├── components              // place 1 or more components to author here
     │   └── HelloWorld.vue
     │
+    ├── mixins                  // reduce complexity by separating any long code here
+    │   ├── mix1.js
+    │   └── mix2.js
+    │
     └── stories                 // use case or usage of the component written in story-scenario analogy
         ├── Story1
         │   └── Scenario1.vue
