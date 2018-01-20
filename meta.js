@@ -51,11 +51,11 @@ module.exports = {
       choices: [
         'knobs',
         'notes',
-        {
-          name: 'info (experimental)',
-          value: 'info',
-          short: 'info'
-        },
+        // {
+        //   name: 'info (experimental)',
+        //   value: 'info',
+        //   short: 'info'
+        // },
         'readme',
         'actions'
       ],
