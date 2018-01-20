@@ -25,15 +25,18 @@ module.exports = {
   },
 {{/if}}
 
+/** @code to completely rewrite webpack config
   webpack (config) {
-    return updateWebpackConfig(config)
+    config = {
+      // your webpack config
+    }
+    return config
   },
+*/
 
   extendWebpack (config) {
-    config.module.rule('markdown')
-      .test(/\.md$/)
-      .use('html').loader(require.resolve('html-loader')).end()
-      .use('markdown').loader(require.resolve('markdown-loader'))
+    // extend webpack configuration using webpack-chain
+    // see https://github.com/egoist/poi/tree/master/packages/poi-preset-storybook#using-markdown-file
   },
 
   // Entry is relative to process.cwd()

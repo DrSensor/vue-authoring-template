@@ -58,12 +58,6 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run:
-          name: build CommonJS component
-          command: yarn build:component
-      - run:
-          name: build UMD component
-          command: yarn build:component:umd
-      - run:
           name: publish to npm
           command: npm publish
 {{/isEnabled}}
@@ -108,4 +102,4 @@ workflows:
               only: /^v\d+[.]\d+[.]\d+$/
             branches:
               ignore: /.*/
-  {{/isEnabled}}
+{{/isEnabled}}

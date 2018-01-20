@@ -8,10 +8,12 @@
     "component"
   ],
   "main": "dist/{{name}}.js",
+  "unpkg": "umd/{{name}}.js",
   "files": [
     "dist/",
     "umd/",
-    "src/components/"
+    "src/components/",
+    "src/mixins/"
   ],
   "license": "MIT",
   "private": false,
@@ -20,7 +22,9 @@
     "build:storybook": "poi build --config .storybook/poi.config.js --storybook",
     "build:component": "poi build src/components/{{pascalCase name}}.vue --library",
     "build:component:umd": "poi build src/components/{{pascalCase name}}.vue --library {{pascalCase name}} --dist umd",
-    "deploy": "surge .storybook/dist"
+    "deploy": "surge .storybook/dist",
+    "predeploy": "npm run build:storybook",
+    "prepublish": "concurrently --kill-others 'npm run build:component' 'npm run build:component:umd'"
   },
   "devDependencies": {
 {{#isEnabled addons 'actions'}}    
@@ -40,13 +44,14 @@
 {{/isEnabled}}
     "@storybook/addon-options": "^3.3.0",
     "@storybook/vue": "^3.3.0",
+{{#if customBlocks}}
     "marked": "^0.3.0",
+{{/if}}
     "poi": "^9.4.0",
     "poi-preset-resolve-alias": "^1.0.0",
-    "poi-preset-storybook": "^0.1.0",
-    "html-loader": "^0.5.0",
-    "markdown-loader": "^2.0.0",
-    "surge": "^0.19.0"
+    "poi-preset-storybook": "^0.1.4",
+    "surge": "^0.19.0",
+    "concurrently": "^3.5.1"
   },
   "peerDependencies": {},
   "dependencies": {}
