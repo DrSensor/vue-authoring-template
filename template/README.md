@@ -102,4 +102,4 @@ export default {
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for development guide.
 
 ---
-This component was generated with [vue-authoring-template](https://github.com/DrSensor/vue-authoring-template) using [vue-cli](https://github.com/vuejs/vue-cli).
+<sup>This library was generated with [vue-authoring-template](https://github.com/DrSensor/vue-authoring-template) using [vue-cli](https://github.com/vuejs/vue-cli).</sup>

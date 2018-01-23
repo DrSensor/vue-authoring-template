@@ -38,7 +38,7 @@ module.exports = {
       type: 'string',
       required: false,
       message: 'Project description',
-      default: 'A Vue.js project'
+      default: 'This is a demo project generated using vue-authoring-template'
     },
     author: {
       type: 'string',

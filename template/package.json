@@ -7,8 +7,10 @@
     "vue",
     "component"
   ],
+  "unpkg": "dist/{{name}}.min.js",
+  "jsdelivr": "dist/{{name}}.min.js",
   "main": "dist/{{name}}.js",
-  "unpkg": "umd/{{name}}.js",
+  "module": "dist/{{name}}.es.js",
   "files": [
     "dist/",
     "umd/",
@@ -18,13 +20,12 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "poi --config .storybook/poi.config.js --storybook --open",
-    "build:storybook": "poi build --config .storybook/poi.config.js --storybook",
-    "build:component": "poi build src/components/{{pascalCase name}}.vue --library",
-    "build:component:umd": "poi build src/components/{{pascalCase name}}.vue --library {{pascalCase name}} --dist umd",
+    "dev": "start-storybook --static-dir static",
+    "build:storybook": "build-storybook --static-dir static --output-dir .storybook/dist",
+    "build:component": "bili --plugin vue --jsx vue",
     "deploy": "surge .storybook/dist",
     "predeploy": "npm run build:storybook",
-    "prepublish": "concurrently --kill-others 'npm run build:component' 'npm run build:component:umd'"
+    "prepublish": "npm run build:component"
   },
   "devDependencies": {
 {{#isEnabled addons 'actions'}}    
@@ -43,15 +44,18 @@
     "storybook-readme": "^3.1.0",
 {{/isEnabled}}
     "@storybook/addon-options": "^3.3.0",
+    "@storybook/addons": "^3.3.0",
     "@storybook/vue": "^3.3.0",
+    "@storybook/cli": "^3.3.0",
 {{#if customBlocks}}
     "marked": "^0.3.0",
 {{/if}}
-    "poi": "^9.4.0",
-    "poi-preset-resolve-alias": "^1.0.0",
-    "poi-preset-storybook": "^0.1.4",
+    "bili": "^1.6.5",
+    "rollup-plugin-vue": "^3.0.0",
     "surge": "^0.19.0",
-    "concurrently": "^3.5.1"
+    "vue": "^2.5.10",
+    "vue-loader": "^13.7.0",
+    "vue-template-compiler": "^2.5.10"
   },
   "peerDependencies": {},
   "dependencies": {}

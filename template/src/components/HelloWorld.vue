@@ -33,11 +33,7 @@ export default {
   methods: {
     clicked () {
       this.toggle = !this.toggle
-{{#isEnabled addons 'actions'}}
-      this.$action('click', [this.hello])
-{{else}}
-      console.log('click', this.hello)
-{{/isEnabled}}
+      this.$emit('click')
     }
   }
 }

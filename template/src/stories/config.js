@@ -11,5 +11,4 @@ export const scenarioOrder = {
     'Scenario1'
   ]
 }
-
 {{/if}}

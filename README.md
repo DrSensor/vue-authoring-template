@@ -2,7 +2,6 @@
 <!-- [![CircleCI](https://circleci.com/gh/DrSensor/vue-authoring-template.svg?style=shield)](https://circleci.com/gh/DrSensor/vue-authoring-template) -->
 <sub>Click one of this badge for more info</sub>
 
-[![minimal config](https://img.shields.io/badge/config-minimal-grey.svg?maxAge=2592000&style=flat-square)](https://poi.js.org)
 [![circleci support](https://img.shields.io/badge/circleci-support-blue.svg?maxAge=2592000&style=flat-square)](https://circleci.com/docs/1.0/npm-continuous-deployment/)
 [![surge support](https://img.shields.io/badge/deploy_to-surge-63c299.svg?maxAge=2592000&style=flat-square)](https://surge.sh/help/integrating-with-circleci)
 [![vue 2.x](https://img.shields.io/badge/vue-2.x-4fc08d.svg?maxAge=2592000&style=flat-square)](https://vuejs.org/)
@@ -11,6 +10,10 @@
 
 ---
 This template is to help authoring Vue component with it's use case in story-scenario (storybook) format.
+
+```bash
+vue init DrSensor/vue-authoring-template
+```
 
 ![](./screenplay.gif)
 
@@ -30,8 +33,6 @@ This template is to help authoring Vue component with it's use case in story-sce
 
 ## Features
 
-- Support `vue init` workflow
-- Minimal configuration. Thanks to [poi](https://poi.js.org)
 - Write your storybook `story-scenario` (a.k.a *use case*) in `.vue` **single-file-component format**, not `.js` or `.jsx`
 - Option to generate [circleci](https:circleci.com) config to: 
   - publish vue component to `npm` and `unpkg` <sub>(need to `git push --tags`)</sub>
@@ -92,7 +93,8 @@ npm publish
 
 ```markdown
 .
-├── package.json            // choose and configure the component you want to package in here (still need to edit `scripts: {}` block)
+├── package.json
+├── .bilirc                 // choose and configure the component you want to package in here
 ├── .editorconfig
 ├── .gitignore
 │
@@ -100,29 +102,29 @@ npm publish
 │   └── config.yml
 ├── .loader                 // loader for processing custom blocks
 │   └── docs-loader.js
-├── .storybook
+├── .storybook              // storybook related config
 │   ├── addons.js
 │   ├── config.js
-│   └── poi.config.js       // currently the template project use `poi` as alternative of `vue build`
+│   └── webpack.config.js
 │
 └── src
     ├── components              // place 1 or more components to author here
     │   └── HelloWorld.vue
     │
-    ├── mixins                  // reduce complexity by separating any long code here
+    ├── mixins                  // if needed, reduce complexity by separating any long code as mixins
     │   ├── mix1.js
     │   └── mix2.js
     │
-    └── stories                 // use case or usage of the component written in story-scenario analogy
+    └── stories                 // use-case/usage of the component written in story-scenario analogy
         ├── Story1
         │   └── Scenario1.vue
         ├── Story2
         ├── Story3
-        ├── config.js           // config to order the story and the scenario
+        ├── config.js           // config to re-order the story and the scenario
         └── index.js            // chain and add the addon here
 ```
 
-## Looking for suggestion! (Open/Comment New Issues)
+## Looking for suggestion!
 
 - How to customize style of the storybook
 - Authoring `Vuex` module? [Is it necessary?](https://github.com/DrSensor/vue-authoring-template/issues/3)
@@ -135,3 +137,6 @@ See [CONTRIBUTING.md](https://github.com/DrSensor/vue-authoring-template/blob/ma
 
 ## License
 [MIT](https://github.com/DrSensor/vue-authoring-template/blob/master/LICENSE) License
+
+---
+Modify/clone/fork/do-anything to this template and generated README and any others content as you wish.
