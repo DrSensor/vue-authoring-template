@@ -3,7 +3,7 @@
 > {{ description }}
 
 <!-- Use https://github.com/phw/peek or https://github.com/ShareX/ShareX to record your component in action as gif -->
-![](./screenplay.gif)
+<!-- ![](./static/screenplay.gif) waiting https://github.com/tuchk4/storybook-readme/issues/51 to resolve -->
 
 ## Installation
 

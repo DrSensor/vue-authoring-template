@@ -18,7 +18,7 @@ module.exports = (storybookBaseConfig, configType, defaultConfig) => {
 
   // Return the altered config
 {{#isEnabled addons 'readme'}}
-  return updateWebpackConfig(defaultConfig)
+  return updateWebpackConfig(storybookBaseConfig)
 {{else}}
   return defaultConfig
 {{/isEnabled}}
