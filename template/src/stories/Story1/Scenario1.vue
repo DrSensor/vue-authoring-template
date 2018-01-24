@@ -32,9 +32,9 @@ export default {
   methods: {
     clicked (helloText) {
 {{#isEnabled addons 'actions'}}
-      this.$action('click', [this.hello])
+      this.$action('click', helloText)
 {{else}}
-      console.log('click', this.hello)
+      console.log('click', helloText)
 {{/isEnabled}}
     }
   }

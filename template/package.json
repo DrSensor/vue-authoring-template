@@ -9,11 +9,10 @@
   ],
   "unpkg": "dist/{{name}}.min.js",
   "jsdelivr": "dist/{{name}}.min.js",
-  "main": "dist/{{name}}.js",
-  "module": "dist/{{name}}.es.js",
+  "main": "dist/{{name}}.cjs.js",
+  "module": "dist/{{name}}.m.js",
   "files": [
     "dist/",
-    "umd/",
     "src/components/",
     "src/mixins/"
   ],

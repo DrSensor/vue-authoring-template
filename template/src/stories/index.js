@@ -10,7 +10,8 @@ import Vue from 'vue'
 Vue.mixin({
   methods: {
     $action (label, payload) {
-      this.$emit('action', label, payload)
+      if (payload !== undefined) this.$emit('action', label, payload)
+      else this.$emit('action', label)
     }
   }
 })
@@ -48,9 +49,8 @@ require.context('.', true, /\.vue$/).keys()
 
       const story = () => {
         return {
-          render () {
-            return <story {{#isEnabled addons 'actions'}}onAction={action(`${storyName}/${componentName}`)} {{/isEnabled}}/>
-          },
+          template: '<story @action="act" />',
+          methods: { act: action(`${storyName}/${componentName}`) },
           components: {
             'story': Component
           }
