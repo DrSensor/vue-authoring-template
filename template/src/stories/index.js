@@ -3,17 +3,6 @@
 import { storiesOf } from '@storybook/vue'
 import { storyOrder, scenarioOrder } from './config.js'
 
-{{#if customBlocks}}
-{{#isEnabled addons 'notes'}}
-import { withNotes } from '@storybook/addon-notes'
-{{/isEnabled}}
-{{#isEnabled addons 'readme'}}
-import { withDocs } from 'storybook-readme'
-{{/isEnabled}}
-{{#isEnabled addons 'info'}}
-import { withInfo } from '@storybook/addon-info'
-{{/isEnabled}}
-{{/if}}
 {{#isEnabled addons 'actions'}}
 import { action } from '@storybook/addon-actions'
 import Vue from 'vue'
@@ -21,7 +10,8 @@ import Vue from 'vue'
 Vue.mixin({
   methods: {
     $action (label, payload) {
-      this.$emit('action', label, payload)
+      if (payload !== undefined) this.$emit('action', label, payload)
+      else this.$emit('action', label)
     }
   }
 })
@@ -59,31 +49,18 @@ require.context('.', true, /\.vue$/).keys()
 
       const story = () => {
         return {
-          render () {
-            return <story {{#isEnabled addons 'actions'}}onAction={action(`${storyName}/${componentName}`)} {{/isEnabled}}/>
-          },
+          template: '<story @action="act" />',
+          methods: { act: action(`${storyName}/${componentName}`) },
           components: {
             'story': Component
           }
         }
       }
 
-{{#if customBlocks}}
-      /** CHAIN THE CUSTOM BLOCK WITH THE storybook-addon HERE */
+      /** CHAIN the storybook-addon HERE */
       let storyWithAddons = story
-{{#isEnabled addons 'notes'}}
-      storyWithAddons = withNotes(Component.__notes || '')(storyWithAddons)
-{{/isEnabled}}
-{{#isEnabled addons 'info'}}
-      storyWithAddons = withInfo(Component.__info || '')(storyWithAddons) // BUG: not support Vue Component
-{{/isEnabled}}
-{{#isEnabled addons 'readme'}}
-      storyWithAddons = withDocs(Component.__docs || '', storyWithAddons) // WIP: https://github.com/tuchk4/storybook-readme/issues/37
-{{/isEnabled}}
+
       Stories.add(componentName, storyWithAddons)
-{{else}}
-      Stories.add(componentName, story)
-{{/if}}
     }
   })
 

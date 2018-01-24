@@ -1,0 +1,67 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:latest
+
+jobs:
+  init:
+    <<: *defaults
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: sudo apt-get install expect
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-\{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run:
+          name: install dependency
+          command: yarn
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-\{{ checksum "package.json" }}
+      
+      - run:
+          name: auto generate project using this template
+          command: chmod +x test.sh; ./test.sh
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - vue-authoring-demo/*
+
+  build:
+    <<: *defaults
+    working_directory: ~/repo/vue-authoring-demo
+    steps:
+        - attach_workspace:
+            at: ~/repo
+        - run: yarn build:component
+        - run: yarn build:storybook
+
+  smoke-test:
+    <<: *defaults
+    working_directory: ~/repo/vue-authoring-demo
+    steps:
+        - attach_workspace:
+            at: ~/repo
+        - run: yarn dev -- --smoke-test
+
+workflows:
+  version: 2
+  smoke_test:
+    jobs:
+      - init
+      - build:
+          requires:
+            - init
+      - smoke-test:
+          requires:
+            - init

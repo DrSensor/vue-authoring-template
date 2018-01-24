@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import {{pascalCase name}} from '../../components/{{pascalCase name}}.vue'
 {{#isEnabled addons 'knobs'}}
 /**@see https://github.com/storybooks/storybook/tree/master/addons/knobs#available-knobs */
 import { text } from '@storybook/addon-knobs/vue'
@@ -17,26 +18,23 @@ import { text } from '@storybook/addon-knobs/vue'
 
 export default {
   components: {
-    {{pascalCase name}}: () => import('@/{{pascalCase name}}')
+    {{pascalCase name}}
   },
   data () {
     return {
 {{#isEnabled addons 'knobs'}}
       hello: text('hello text', 'Hello World!!!')
-{{/isEnabled}}      
+{{else}}
+      hello: 'Hello World!!!'
+{{/isEnabled}}
     }
   },
   methods: {
-{{#isEnabled addons 'actions'}}
-    action (label, data) {
-      this.$emit('action', label, data)
-    },
-{{/isEnabled}}
     clicked (helloText) {
 {{#isEnabled addons 'actions'}}
-      this.action('button-click', helloText)
+      this.$action('click', helloText)
 {{else}}
-      console.log(helloText)
+      console.log('click', helloText)
 {{/isEnabled}}
     }
   }

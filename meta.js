@@ -38,7 +38,7 @@ module.exports = {
       type: 'string',
       required: false,
       message: 'Project description',
-      default: 'A Vue.js project'
+      default: 'This is a demo project generated using vue-authoring-template'
     },
     author: {
       type: 'string',
@@ -51,11 +51,11 @@ module.exports = {
       choices: [
         'knobs',
         'notes',
-        {
-          name: 'info (experimental)',
-          value: 'info',
-          short: 'info'
-        },
+        // {
+        //   name: 'info (experimental)',
+        //   value: 'info',
+        //   short: 'info'
+        // },
         'readme',
         'actions'
       ],
@@ -64,12 +64,6 @@ module.exports = {
         'readme',
         'actions'
       ]
-    },
-    customBlocks: {
-      type: 'confirm',
-      when: 'addons.notes || addons.info || addons.readme',
-      message: 'Enable custom-blocks? (experimental)',
-      default: false
     },
     useci: {
       type: 'confirm',
@@ -122,15 +116,13 @@ module.exports = {
           value: false,
           short: 'no'
         }
-      ]
+      ],
+      default: 'yarn'
     }
   },
   filters: {
     '.circleci/*': 'useci',
-    'FOOTER.md': 'addons.readme && customBlocks',
-    '.loader/docs-loader.js': 'addons.readme && customBlocks',
-    '.loader/info-loader.js': 'addons.info && customBlocks',
-    '.loader/notes-loader.js': 'addons.notes && customBlocks',
+    'FOOTER.md': 'addons.readme'
   },
   complete: function (data, { chalk }) {
     const green = chalk.green

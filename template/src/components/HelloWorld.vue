@@ -36,11 +36,7 @@ export default {
   methods: {
     clicked () {
       this.toggle = !this.toggle
-<<<<<<< HEAD:template/src/components/HelloWorld.vue
-      this.$action('click', [this.hello])
-=======
-      this.$emit('click', this.hello)
->>>>>>> master:template/components/HelloWorld.vue
+      this.$emit('click')
     }
   }
 }

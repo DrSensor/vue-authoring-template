@@ -1,0 +1,8 @@
+{
+  "name": "{{name}}",
+  "moduleName": "{{pascalCase name}}",
+  "input": [
+    "src/components/*"
+  ],
+  "format": ["cjs", "umd-min", "es"]
+}
