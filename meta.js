@@ -116,7 +116,8 @@ module.exports = {
           value: false,
           short: 'no'
         }
-      ]
+      ],
+      default: 'yarn'
     }
   },
   filters: {

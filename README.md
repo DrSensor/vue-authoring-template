@@ -1,5 +1,5 @@
-# vue-authoring-template
-<!-- [![CircleCI](https://circleci.com/gh/DrSensor/vue-authoring-template.svg?style=shield)](https://circleci.com/gh/DrSensor/vue-authoring-template) -->
+# vue-authoring-template [![CircleCI](https://circleci.com/gh/DrSensor/vue-authoring-template.svg?style=svg)](https://circleci.com/gh/DrSensor/vue-authoring-template)
+
 <sub>Click one of this badge for more info</sub>
 
 [![circleci support](https://img.shields.io/badge/circleci-support-blue.svg?maxAge=2592000&style=flat-square)](https://circleci.com/docs/1.0/npm-continuous-deployment/)
