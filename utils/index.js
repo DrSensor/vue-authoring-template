@@ -61,7 +61,7 @@ exports.printMessage = function printMessage (data, { green, yellow, magenta }) 
   const message = `
 # ${green('Project initialization finished!')}
 # ========================
-For more information about configuring the storybook see https://storybook.js.org/basics/guide-vue/
+${magenta(`For more information about configuring the storybook see https://storybook.js.org/basics/guide-vue/`)}
 
 To get started:
 
@@ -78,30 +78,9 @@ List of command:
     ${green('npm run build:component')} \t: build .vue component into .js
     ${green('npm run deploy')} \t\t: deploy into surge.sh
 
-${custBlcksMsg(data, magenta)}
-${data.addons.info && custBlcksMsg
-  ? `Thank you for trying experimental features.
-  If you find bugs and/or have suggestion, feel free to open issue https://github.com/DrSensor/vue-authoring-template/issues/new \n
-`
-: ``}
 Follow https://vuejs.org/v2/guide/components.html#Authoring-Reusable-Components for best practice.
 `
   console.log(message)
-}
-
-/**
- * If the user choose to use customBlocks, it return a string
- * containing the instruction for this step.
- * @param {Object} data Data from the questionnaire
- */
-function custBlcksMsg (data, color) {
-  if (data.customBlocks) {
-    return `
-    To add more custom-blocks, you need to write custom webpack-loader and place it to ${color('.loader/')}.
-    Then ${color('require.resolve(.loader/<your-loader>.js')} into vue.loaders config at ${color('.storybook/poi.config.js')}
-    \n
-    `
-  } else return ''
 }
 
 /**

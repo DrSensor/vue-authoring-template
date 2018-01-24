@@ -46,7 +46,6 @@ vue init DrSensor/vue-authoring-template
     - [notes](https://github.com/storybooks/storybook/tree/master/addons/notes)
 - Order the story and scenario *alphabetically* or manually re-order using `Array|Object` in `src/stories/config.js`
 - Auto generate [`README.md`](./template/README.md)
-- Custom blocks (experimental, looking for feedback)
 
 ## Usage
 
@@ -59,13 +58,15 @@ After that, you can:
 - start in development mode
 
 ```bash
-[npm|yarn] dev
+npm run dev # or
+yarn dev
 ```
 
 - deploy storybook page directly to http://surge.sh
 
 ```bash
-[npm|yarn] run deploy
+npm run deploy # or
+yarn deploy
 ```
 
 - publish component directly to http://npmjs.com
@@ -79,14 +80,17 @@ npm publish
 - build vue component
 
 ```bash
-[npm|yarn] build:component      # as CJS module, the output will be in dist/
-[npm|yarn] build:component:umd  # as UMD module, the output will be in umd/
+# the output will be in dist/
+npm run build:component # or
+yarn build:component
 ```
 
 - build the storybook page
 
 ```bash
-[npm|yarn] build:storybook  # the output will be in .storybook/dist/
+# the output will be in .storybook/dist/
+npm run build:storybook # or
+yarn build:storybook
 ```
 
 ## Project Structure
@@ -100,8 +104,7 @@ npm publish
 │
 ├── .circleci
 │   └── config.yml
-├── .loader                 // loader for processing custom blocks
-│   └── docs-loader.js
+│
 ├── .storybook              // storybook related config
 │   ├── addons.js
 │   ├── config.js

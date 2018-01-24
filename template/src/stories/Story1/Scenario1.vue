@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {{pascalCase name}} from '../../components/{{pascalCase name}}'
+import {{pascalCase name}} from '../../components/{{pascalCase name}}.vue'
 {{#isEnabled addons 'knobs'}}
 /**@see https://github.com/storybooks/storybook/tree/master/addons/knobs#available-knobs */
 import { text } from '@storybook/addon-knobs/vue'

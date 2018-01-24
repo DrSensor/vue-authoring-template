@@ -65,12 +65,6 @@ module.exports = {
         'actions'
       ]
     },
-    customBlocks: {
-      type: 'confirm',
-      when: 'addons.notes || addons.info || addons.readme',
-      message: 'Enable custom-blocks? (experimental)',
-      default: false
-    },
     useci: {
       type: 'confirm',
       message: 'Add circleci for Continuos Build?'
@@ -127,10 +121,7 @@ module.exports = {
   },
   filters: {
     '.circleci/*': 'useci',
-    'FOOTER.md': 'addons.readme && customBlocks',
-    '.loader/docs-loader.js': 'addons.readme && customBlocks',
-    '.loader/info-loader.js': 'addons.info && customBlocks',
-    '.loader/notes-loader.js': 'addons.notes && customBlocks',
+    'FOOTER.md': 'addons.readme'
   },
   complete: function (data, { chalk }) {
     const green = chalk.green
