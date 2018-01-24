@@ -1,6 +1,6 @@
 {
   "name": "vue-authoring-template",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "description": "A template for authoring component with it's use case.",
   "scripts": {
