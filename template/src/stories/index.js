@@ -58,6 +58,13 @@ require.context('.', true, /\.vue$/).keys()
       }
 
       /** CHAIN the storybook-addon HERE */
+
+      if (chainAddon[storyName][scenarioName] instanceof Function) {
+        var addAddon = chainAddon[storyName][scenarioName]
+      } else if (chainAddon[storyName] instanceof Function) {
+   var addAddon = chainAddon[storyName]
+      } else addAddon = chainAddon['default']
+
       let storyWithAddons = story
 
       Stories.add(componentName, storyWithAddons)
